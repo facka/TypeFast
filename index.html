@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Type Fast</title>
+    <link href=style.css rel=stylesheet>
+  </head>
+  <body>
+    <div id="app">
+        <div :class="{'ok': fine, wrong: !fine}" style="padding-top: 50px; height: 600px;">
+            <div class="container">
+                <div class="row">  
+                    <div class="col-sm-6 col-sm-offset-3" style="text-align: center;">
+                        <h1>Type Fast Game</h1>
+                        <div style="margin-bottom: 40px;">Type '{{keyWord}}' as fast as you can</div>
+                        <form autocomplete="off">
+                            <input type="text" class="form-control invisible" id="hiddeninput" v-on:keydown="keypress">
+                        </form>
+                        <div class="flex-container" v-on:click="focusInput()">
+                            <div v-for="(char, idx) in keyWordAsArray" :key="idx" class="box" :class="{'active': idx == index, 'failed': idx == index && !fine, 'box-enabled' : index > idx}">
+                                <span class="fade" :class="{'enabled' : index >= idx}">{{text[idx]}}</span>
+                                <div class="sub-text">{{charsTime[idx]}} <span v-show="idx > 0 && text[idx] && charsTime[idx]">(+{{charsTime[idx] - charsTime[idx-1]}})</span></div>
+                                <div class="sub-text-historic" v-show="idx > 0 && text[idx] && charsTime[idx]">{{historicTimes[idx]}} <span>(+{{historicSwitchTimes[idx]}})</span></div>
+                            </div>
+                        </div>
+                        <div v-if="endTime" style="padding: 30px">Total Time: {{endTime}} miliseconds</div>
+                    </div>
+                </div>
+                <div class="row" style="text-align: center;">  
+                    <h1 v-if="!fine" style="padding: 10px">Hit backspace to re start!</h1>
+                </div>
+                <div class="row" style="text-align: center;">  
+                    <h1 v-if="index == keyWord.length" style="padding: 10px">Sweet! Hit backspace to re start!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/tone"></script>
+    <script src="https://unpkg.com/@tonejs/ui"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <script type=text/javascript src=main.js></script>
+  </body>
+</html>
