@@ -41,16 +41,18 @@
 .sub-text {
   position: relative;
   font-size: 12px;
-  top: -60px;
+  top: -10px;
   left: 0px;
   color: grey;
+  line-height: 12px;
 }
 .sub-text-historic {
   position: relative;
   font-size: 12px;
-  top: -146px;
+  top: -6px;
   left: 0px;
   color: green;
+  line-height: 12px;
 }
 .fade {
   opacity: 0;
