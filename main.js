@@ -6,16 +6,64 @@ const app = new Vue({
         keyWord: 'BriteCore',
         text: [],
         fine: true,
+        changingWord: false,
         index: 0,
         time: 0,
         endTime: 0,
         charsTime: [],
         historicTimes: [],
         historicSwitchTimes: [],
-        synth: new Tone.FMSynth().toMaster()
+        
       };
     },
+    beforeCreate: function() {
+      console.log('Before Create!!');
+    },
+    created: function() {
+      this.synth = new Tone.FMSynth().toMaster();
+      this.notes = [
+        'C4','D4','E4','F4','G4','A4','B4',
+        'C5','D5','E5','F5','G5','A5','B5'
+      ];
+      console.log('Created!!');
+    },
+    beforeUpdate: function() {
+      console.log('Before update!!');
+    },
+    updated: function() {
+      console.log('Updated!!');
+    },
+    beforeMount: function() {
+      console.log('Before mount!!');
+    },
+    mounted: function() {
+      console.log('mounted!!');
+      this.focusInput();
+    },
+    watch: {
+      index() {
+        console.log('Index changed ', this.index);
+      }
+    },
     methods: {
+      reset: function() {
+        var timeInterval = 1 / app.index;
+        for (var i = 0; i < app.index; i++) {
+          app.synth.triggerAttackRelease(app.notes[app.index-i], '32n', i*timeInterval); 
+        }
+        app.text.length = 0;
+        app.index = 0;
+        app.endTime = 0;
+        app.fine = true;
+        app.charsTime.length = 0;
+      },
+      enableChangeWord: function() {
+        app.changingWord = true;
+      },
+      closeChangeWord: function() {
+        app.reset();
+        app.changingWord = false;
+      },
       focusInput: function() {
         console.log(document.getElementById('hiddeninput'));
         document.getElementById('hiddeninput').focus();
@@ -28,20 +76,8 @@ const app = new Vue({
         if(event && event.key == 'Shift') {
           return;
         }
-        var notes = [
-          'C4','D4','E4','F4','G4','A4','B4',
-          'C5','D5','E5','F5','G5','A5','B5'
-        ];
         if (event && event.keyCode === 8) {
-          var timeInterval = 1 / app.index;
-          for (var i = 0; i < app.index; i++) {
-            app.synth.triggerAttackRelease(notes[app.index-i], '32n', i*timeInterval); 
-          }
-          app.text.length = 0;
-          app.index = 0;
-          app.endTime = 0;
-          app.fine = true;
-          app.charsTime.length = 0;
+          app.reset();
           event.preventDefault();
         } else {
           if(app.index == app.keyWord.length) {
@@ -80,7 +116,7 @@ const app = new Vue({
              }
              app.text.push(event.key);
              app.index++;
-             app.synth.triggerAttackRelease(notes[app.index], '64n'); 
+             app.synth.triggerAttackRelease(app.notes[app.index], '64n'); 
            }
         }
       }

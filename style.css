@@ -1,82 +1,88 @@
 .ok {
-    background-color: lightgreen;
-  }
-  
-  .wrong {
-    background-color: tomato;
-  }
-  .flex-container {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    cursor: text;
-  }
-  
-  .flex-container > div {
-    background-color: #f1f1f1;
-    width: 100px;
-    margin: 10px;
-    text-align: center;
-    line-height: 100px;
-    border: 2px solid;
-    height: 100px;
-    border-radius: 10px;
-  }
-  .active {
-    border: 2px solid #0cf!important;
-  }
-  .invisible {
-    opacity: 0;
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    top: -1000px;
-  }
-  .sub-text {
-    position: relative;
-    font-size: 12px;
-    top: -60px;
-    left: 0px;
-    color: grey;
-  }
-  .sub-text-historic {
-    position: relative;
-    font-size: 12px;
-    top: -146px;
-    left: 0px;
-    color: green;
-  }
-  .fade {
-    opacity: 0;
-    transition: all 0.5s ease-out;
-    font-size: 100px;
-  }
-  .enabled {
-    opacity: 1;
-    font-size: 80px;
-  }
-  @keyframes failed {
-    from {background-color: red;}
-    to {background-color: white;}
-  }
-  
-  /* The element to apply the animation to */
-  .failed {
-    background-color: red;
-    animation-name: failed;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate-reverse;
-  }
-  
-  .box {
-    transition: all 0.5s ease-out;
-    position: relative;
-    top: -5px;
-    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.7);
-  }
-  
-  .box-enabled {
-    top: 0px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
-  }
+  background-color: lightgreen;
+}
+
+.wrong {
+  background-color: tomato;
+}
+
+.change-word {
+  cursor: pointer;
+  color: blue;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  cursor: text;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 100px;
+  border: 2px solid;
+  height: 100px;
+  border-radius: 10px;
+}
+.active {
+  border: 2px solid #0cf!important;
+}
+.invisible {
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  top: -1000px;
+}
+.sub-text {
+  position: relative;
+  font-size: 12px;
+  top: -60px;
+  left: 0px;
+  color: grey;
+}
+.sub-text-historic {
+  position: relative;
+  font-size: 12px;
+  top: -146px;
+  left: 0px;
+  color: green;
+}
+.fade {
+  opacity: 0;
+  transition: all 0.5s ease-out;
+  font-size: 100px;
+}
+.enabled {
+  opacity: 1;
+  font-size: 80px;
+}
+@keyframes failed {
+  from {background-color: red;}
+  to {background-color: white;}
+}
+
+/* The element to apply the animation to */
+.failed {
+  background-color: red;
+  animation-name: failed;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+.box {
+  transition: all 0.5s ease-out;
+  position: relative;
+  top: -5px;
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.7);
+}
+
+.box-enabled {
+  top: 0px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
+}
